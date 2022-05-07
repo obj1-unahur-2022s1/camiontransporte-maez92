@@ -1,3 +1,24 @@
 import camion.*
 import cosas.*
 
+test "Camion cargado con bumblebee convertido en robot" {
+	bumblebee.transformarEnRobot()
+	camion.cargar(bumblebee)
+	assert.that(camion.tieneCargado(bumblebee) and bumblebee.estaTransformadoEnRobot())
+}
+test "Camion cargado con 150 arena" {
+	arena.setPeso(150)
+	camion.cargar(arena)
+	assert.that(camion.tieneCargado(arena) and arena.peso() == 150)
+}
+test "Camion cargado con bateriaAntiaerea" {
+	bateriaAntiaerea.cargar()
+	camion.cargar(bateriaAntiaerea)
+	assert.that(camion.tieneCargado(bateriaAntiaerea) and bateriaAntiaerea.estaCargada())
+}
+test "Camion cargado con paquete de 80 ladrillos" {
+	paqueteLadrillos.setCantidad(80)
+	embalajeSeguridad.embalar(paqueteLadrillos)
+	camion.cargar(embalajeSeguridad)
+	assert.that(camion.tieneCargado(embalajeSeguridad) and embalajeSeguridad.cosaEmbalada() == paqueteLadrillos and paqueteLadrillos.cantidad() == 80)
+}

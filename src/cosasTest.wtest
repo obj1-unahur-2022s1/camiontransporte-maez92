@@ -1,2 +1,29 @@
 import camion.*
 import cosas.*
+
+test "Hay un paquete de ladrillos en el camion" {
+	paqueteLadrillos.setCantidad(100)
+	camion.cargar(paqueteLadrillos)
+	assert.that(camion.tieneCargado(paqueteLadrillos))
+}
+
+test "Hay una bateria antiaerea en el camion" {
+	camion.cargar(bateriaAntiaerea)
+	assert.that(camion.tieneCargado(bateriaAntiaerea))
+}
+
+test "Hay un contenedor con 2 cosas en el camion" {
+	contenedor.guardar(bumblebee)
+	contenedor.guardar(knightRider)
+	camion.cargar(contenedor)
+	assert.equals(1,camion.cantidadDeCosasCargadas())
+	assert.that(camion.tieneCargado(contenedor))
+	assert.equals(contenedor.cantidadDeCosasGuardadas(), 2)
+}
+
+test "Se puede embalar residuos radioactivos y cargarlos al camion quedando con la mitad de peligrosidad" {
+	residuosRadioactivos.setPeso(30)
+	embalajeSeguridad.embalar(residuosRadioactivos)
+	assert.equals(embalajeSeguridad.cosaEmbalada(), residuosRadioactivos)
+	assert.equals(embalajeSeguridad.nivelDePeligrosidad(),100)
+}
